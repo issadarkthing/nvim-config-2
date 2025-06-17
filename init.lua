@@ -24,10 +24,40 @@ require('packer').startup(function(use)
     use { 'Mofiqul/vscode.nvim' }
 
 	-- auto completion
-	use {
-		'ms-jpq/coq_nvim',
-		branch = 'coq',
-	}
+	-- use {
+	-- 	'ms-jpq/coq_nvim',
+	-- 	branch = 'coq',
+	-- }
+
+    -- copilot
+    use {
+        "zbirenbaum/copilot.lua",
+        config = function()
+            require("plugin_config.copilot")
+        end
+    }
+
+    use "onsails/lspkind.nvim"
+
+    use {
+        "zbirenbaum/copilot-cmp",
+        after = { "copilot.lua" },
+        config = function()
+            require("copilot_cmp").setup()
+        end
+    }
+
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            'neovim/nvim-lspconfig',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-path'
+        },
+        config = function()
+            require("plugin_config.nvim-cmp")
+        end
+    }
 
     -- surround stuff based on filetype
     use 'tpope/vim-surround'
@@ -88,13 +118,8 @@ require('packer').startup(function(use)
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
 
-    -- copilot
-    use { 
-        "zbirenbaum/copilot.lua",
-    }
-
     -- ai plugin
-    use({
+    use {
         "olimorris/codecompanion.nvim",
         config = function()
             require("plugin_config.codecompanion")
@@ -106,11 +131,13 @@ require('packer').startup(function(use)
             "nvim-telescope/telescope.nvim", -- Optional: For using slash commands
             "stevearc/dressing.nvim" -- Optional: Improves the default Neovim UI
         }
-    })
+    }
 
+    -- autoformatting
     use {
         "gpanders/nvim-parinfer"
     }
+
 end)
 
 vim.g.mapleader = ","
