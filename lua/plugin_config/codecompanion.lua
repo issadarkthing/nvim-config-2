@@ -1,4 +1,9 @@
 require("codecompanion").setup({
+    display = {
+        chat = {
+            show_settings = true,
+        }
+    },
     strategies = {
         chat = {
             adapter = "anthropic",
@@ -16,6 +21,11 @@ require("codecompanion").setup({
                 env = {
                     api_key = vim.env.ANTHROPIC_API_KEY,
                 },
+                schema = {
+                    model = {
+                        default = "claude-opus-4-20250514"
+                    }
+                }
             })
         end,
         openai = function()
