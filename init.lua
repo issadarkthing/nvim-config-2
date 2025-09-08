@@ -213,6 +213,10 @@ vim.keymap.set("n", "<c-w>s", "<c-w>s<c-w>j")
 vim.keymap.set("n", "<leader>h", function()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end)
+vim.keymap.set("n", "<F1>", "<nop>")
+vim.keymap.set("i", "<F1>", "<nop>")
+vim.keymap.set("n", "<D-F1>", "<nop>")
+vim.keymap.set("i", "<D-F1>", "<nop>")
 
 vim.opt.termguicolors = true
 vim.opt.swapfile = false
