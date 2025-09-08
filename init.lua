@@ -220,7 +220,14 @@ vim.keymap.set("i", "<D-F1>", "<nop>")
 
 vim.opt.termguicolors = true
 vim.opt.swapfile = false
-
+vim.opt.path:append("**")
+vim.opt.grepprg = "rg --vimgrep --smart-case"
+vim.opt.wildignore:append({
+  "*/node_modules/*",
+  "*/.git/*",
+  "*/dist/*",
+  "*/build/*"
+})
 
 vim.filetype.add({
     extension = {
