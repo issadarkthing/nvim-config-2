@@ -6,13 +6,13 @@ require("codecompanion").setup({
     },
     strategies = {
         chat = {
-            adapter = "anthropic",
+            adapter = "openai",
         },
         inline = {
-            adapter = "anthropic",
+            adapter = "openai",
         },
         cmd = {
-            adapter = "anthropic",
+            adapter = "openai",
         }
     },
     adapters = {
@@ -34,8 +34,21 @@ require("codecompanion").setup({
                     api_key = vim.env.OPENAI_API_KEY,
                 },
             })
+        end,
+        gemini = function()
+            return require("codecompanion.adapters").extend("gemini", {
+                env = {
+                    api_key = vim.env.GEMINI_API_KEY,
+                },
+                schema = {
+                    model = {
+                        default = "gemini-2.5-pro"
+                    }
+                }
+            })
         end
     },
 })
 
 vim.keymap.set("n", "<leader>a", ":CodeCompanionChat Toggle<CR>", { desc = "Open AI Chat" })
+vim.keymap.set("v", "<leader>a", ":CodeCompanion<CR>", { desc = "Open AI Chat" })
